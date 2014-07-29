@@ -6,12 +6,16 @@
 
 package com.ya.work;
 
+import java.applet.Applet;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -36,7 +40,17 @@ public class User {
     private Date date;
     @Column(name = "dep_id")
     private int dep_id;
+    
+    @ManyToMany(mappedBy = "users")
+    private Set<Application> apps = new HashSet<Application>();
 
+    public Set<Application> getApps() {
+        return apps;
+    }
+
+    public void setApps(Set<Application> apps) {
+        this.apps = apps;
+    }
     public int getDep_id() {
         return dep_id;
     }
